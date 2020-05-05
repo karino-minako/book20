@@ -1,10 +1,15 @@
+<div class="container">
+<div class="row">
+<div class="col-xs-3">
 <%= render 'books/list', book: @book, user: @user %>
-<table>
+</div>
+<div class="col-xs-9">
+<table class="table table-striped">
 <thead>
 <tr>
   <th></th>
-  <th>title</th>
-  <th>body</th>
+  <th>Title</th>
+  <th>Opinion</th>
 </tr>
 </thead>
 <tbody>
@@ -12,10 +17,10 @@
 <tr>
 <td>
 <%= link_to book_path(book.id) do %>
-  <%= attachment_image_tag book, :image %>
+  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no-image1.jpg", class: "img-circle pull-left profile-thumb" %>
 <% end %>
 <td>
-<%= book.title %>
+<%= link_to book.title, book_path(book.id) %>
 </td>
 <td>
 <%= book.body %>
@@ -24,3 +29,6 @@
 <% end %>
 </tbody>   
 </table>
+</div>
+</div>
+</div>

@@ -10,10 +10,13 @@ before_action :authenticate_user!, only: [:show, :index, :edit]
   def index
       @books = Book.all
       @book = Book.new
+      @user = current_user
   end
 
   def show
       @book = Book.find(params[:id])
+      @user = @book.user
+
   end
 
   def create
@@ -24,12 +27,16 @@ before_action :authenticate_user!, only: [:show, :index, :edit]
         redirect_to book_path(@book)
       else
         @books = Book.all
+        @user = current_user
         render action: :index
       end
   end
 
   def edit
       @book = Book.find(params[:id])
+      if current_user.id != @book.user_id
+      redirect_to books_path
+      end
   end
 
   def update

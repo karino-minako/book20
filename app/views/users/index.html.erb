@@ -1,6 +1,11 @@
+<div class="container">
+<div class="row">
+<div class="col-xs-3">
 <%= render 'books/list', book: @book, user: @user %>
+</div>
+<div class="col-xs-9">
 <h3>Books</h3>
-<table>
+<table class="table table-striped">
 <thead>
 <tr>
   <th>image</th>
@@ -11,17 +16,20 @@
 <% @users.each do |user| %>
 <tr> 
 <td>
-<%= link_to book_path(book.id) do %>
-  <%= attachment_image_tag book, :image %>
+<%= link_to user_path(@user.id) do %>
+  <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image1.jpg", class: "img-circle pull-left profile-thumb" %>
 <% end %>
 </td>
 <td>
-<%= book.name %>
+<%= user.name %>
 </td>
 <td>
-<%= link_to "Show", book_path(book.id) %>
+<%= link_to "Show", user_path(user.id) %>
 </td>
 </tr>  
 <% end %>
 </tbody>   
 </table>
+</div>
+</div>
+</div>
